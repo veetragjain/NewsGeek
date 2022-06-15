@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./App.css";
 import Navbar from "./components/Navbar"
+import Main_body from './components/Main_body';
 
 function App() {
   const [darkmode, setdarkmode] = useState(0);
@@ -35,7 +36,7 @@ function App() {
   return (
     <>
     <Navbar mode={darkmode} pageMode = {pageMode} changeToHome={changeToHome} changeToAboutUs={changeToAboutUs} changeToContactUs ={changeToContactUs} changeToLatest={changeToLatest}/>
-    <div className={`bg-${body} h-screen w-screen`}></div>
+    <Main_body mode={darkmode}/>
     </>
   );
 }

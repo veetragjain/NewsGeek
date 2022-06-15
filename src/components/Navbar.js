@@ -9,7 +9,7 @@ export default function Navbar(props) {
             main: "black",
             logotext: "text-black",
             text: "text-gray-500",
-            bg: "bg-gray-50", 
+            bg: "bg-gray-200", 
             htext: "text-black"
         },
         {
@@ -36,10 +36,10 @@ export default function Navbar(props) {
     }
   return (
     <>
-    <nav className={`flex ${theme[props.mode].bg}`}>
+    <nav className={`flex ${theme[props.mode].bg} sticky top-0 z-10 pt-2`}>
         <h3 className={`mt-1 mb-2 ml-4 font-bold text-xl ${theme[props.mode].logotext}`}>ThinkSchool</h3>
-        <ul className="flex ml-16 pt-1">
-            <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[0]==1?"font-semibold scale-105 border-b-2 " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`} onClick={props.changeToHome}>Home</li>
+        <ul className="flex ml-16 pt-1 ml-auto">
+            <li className={`mr-3 p-1 mb-1 cursor-pointer ${props.pageMode[0]==1?"font-semibold scale-105 border-b-2 border-" + theme[props.mode].main + " " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`} onClick={props.changeToHome}>Home</li>
             <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[1]==1?"font-semibold scale-105 border-b-2 "+ theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToLatest}>Latest</li>
             <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[2]==1?"font-semibold scale-105 border-b-2 " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToAboutUs}>About Us</li>
             <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[3]==1?"font-semibold scale-105 border-b-2 " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToContactUs}>Contact Us</li>
