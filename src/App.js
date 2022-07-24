@@ -1,43 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import "./App.css";
+import Navbarsm from "./components/Navbarsm"
 import Navbar from "./components/Navbar"
 import Main_body from './components/Main_body';
-
+import Footer from './components/footer';
+import { BrowserRouter as Router, Routes, Switch, Link, Route } from "react-router-dom";
 function App() {
-  const [darkmode, setdarkmode] = useState(0);
-  const [pageMode, setpageMode] = useState([1,0,0,0])
-  const changeToHome = () => {
-    let newPageMode = [1,0,0,0];
-    setpageMode(newPageMode);
-  }
-  const changeToLatest = () => {
-    let newPageMode = [0,1,0,0];
-    setpageMode(newPageMode);
-  }
-  const changeToAboutUs = () => {
-    let newPageMode = [0,0,1,0];
-    setpageMode(newPageMode);
-  }
-  const changeToContactUs = () => {
-    let newPageMode = [0,0,0,1];
-    setpageMode(newPageMode);
-  }
-  const [body, setbody] = useState("white")
-  const changeMode = () => {
-    if(darkmode==1){
-      setdarkmode(0);
-      setbody("white");
-    }
-    else{
-      setdarkmode(1);
-      setbody("black");
-    }
-  }
+  const [pageNo, setpageNo] = useState(1);
+  const [view, setview] = useState("flex-row")
+  const [category, setcategory] = useState("General");
   return (
-    <>
-    <Navbar mode={darkmode} pageMode = {pageMode} changeToHome={changeToHome} changeToAboutUs={changeToAboutUs} changeToContactUs ={changeToContactUs} changeToLatest={changeToLatest}/>
-    <Main_body mode={darkmode}/>
-    </>
+    <Router>
+    <Navbarsm cview={setview}/>
+    <Navbar category={category}/>
+    <Routes>
+        <Route 
+          path="/"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="General"/>}
+        />
+        <Route 
+          path="/Entertainment"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Entertainment"/>}
+        />
+        <Route 
+          path="/Health"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Health"/>}
+        />
+        <Route 
+          path="/Sports"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Sports"/>}
+        />
+        <Route 
+          path="/Science"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Science"/>}
+        />
+        <Route 
+          path="/Technology"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Technology"/>}
+        />
+        <Route 
+          path="/Business"
+          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Business"/>}
+        />
+    </Routes>
+    </Router>
   );
 }
 

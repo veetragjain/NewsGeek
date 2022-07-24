@@ -1,52 +1,38 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar(props) {
-    const [a, seta] = useState(0);
-    const [text, settext] = useState("Search...");
-    const theme = [
-        {
-            anti: "white",
-            main: "black",
-            logotext: "text-black",
-            text: "text-gray-500",
-            bg: "bg-gray-200", 
-            htext: "text-black"
-        },
-        {
-            anti: "black",
-            main: "white",
-            logotext:"text-white",
-            text: "text-gray-400",
-            bg: "bg-black",
-            htext: "text-white"
-        }
-    ];
-    const handleOnChange = (event) => {
-        let newtext = event.target.value;
-        settext(newtext);
+    const [cat, setcat] = useState("General");
+    const [searchBar, setsearchBar] = useState("Search...")
+    const handleOnChange = (event) =>{
+        setsearchBar(event.target.value);
     }
-    const handleOnClick = () => {
-        if(a==0){
-            seta(1);
-            settext("");
+    const handleOnClick = (event) => {
+        if(searchBar == "Search..."){
+            setsearchBar("");
         }
-    }
-    const clicked = (event) => {
-        console.log(event.target.style);
     }
   return (
     <>
-    <nav className={`flex ${theme[props.mode].bg} sticky top-0 z-10 pt-2`}>
-        <h3 className={`mt-1 mb-2 ml-4 font-bold text-xl ${theme[props.mode].logotext}`}>ThinkSchool</h3>
-        <ul className="flex ml-16 pt-1 ml-auto">
-            <li className={`mr-3 p-1 mb-1 cursor-pointer ${props.pageMode[0]==1?"font-semibold scale-105 border-b-2 border-" + theme[props.mode].main + " " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`} onClick={props.changeToHome}>Home</li>
-            <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[1]==1?"font-semibold scale-105 border-b-2 "+ theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToLatest}>Latest</li>
-            <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[2]==1?"font-semibold scale-105 border-b-2 " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToAboutUs}>About Us</li>
-            <li className={`mr-3 p-1 mb-1 cursor-pointer border-${theme[props.mode].main} ${props.pageMode[3]==1?"font-semibold scale-105 border-b-2 " + theme[props.mode].htext:theme[props.mode].text + " hover:scale-105 hover:"+ theme[props.mode].htext}`}onClick={props.changeToContactUs}>Contact Us</li>
-        </ul>
-        <input value={text}  onChange={handleOnChange} onClick={handleOnClick} type="text" className={`rounded-md text-center mr-2 ml-auto mt-1.5 mb-1.5 text-gray-600 border-${theme[props.mode].main} border-2`}/>
-        <button className={`m-1.5 rounded-lg pl-2 pr-2 mr-4 bg-black text-white border-2 hover:scale-105`} onClick={props.changeMode}>Search</button>
-    </nav>
+    {/* Navbar for large screens */}
+    <div className={`bg-black hidden lg:flex sticky top-0 z-10 items-center`}>
+        <Link to="/" onClick={()=>setcat("General")} className={`flex items-center`}>
+          <img className={`object-contain h-16 w-20 mt-2`} src="https://th.bing.com/th/id/R.54e528d4377b886840ea036dfe471120?rik=Mh3%2fTZVnh6IQXA&riu=http%3a%2f%2fwww.wallpaperbetter.com%2fwallpaper%2f340%2f164%2f849%2fthe-devil-wears-prada-logo-pink-black-background-720P-wallpaper.jpg&ehk=0CoX39bWSsueo7MOpmqzx52k6p%2fHjRRZRU3%2fZzTff2w%3d&risl=&pid=ImgRaw&r=0" alt="" />
+          <span className={`fond-extrabold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-2 mt-2 `}>NewsGeek</span>
+        </Link>
+        <div className={`flex ml-auto items-center`}>
+        <Link to="/" onClick={()=>setcat("General")} className={`mr-4 ${cat=="General"? "font-bold scale-105 text-white border-b-2 border-white" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Home</Link>
+        <Link to="/Entertainment" onClick={() =>setcat("Entertainment")} className={`mr-4 ${cat=="Entertainment"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Entertainment</Link>
+        <Link to="/Health" onClick={()=>setcat("Health")} className={`mr-4 ${cat=="Health"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Health</Link>
+        <Link to="/Sports" onClick={()=>setcat("Sports")} className={`mr-4 ${cat=="Sports"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Sports</Link>
+        <Link to="/Science" onClick={()=>setcat("Science")} className={`mr-4 ${cat=="Science"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Science</Link>
+        <Link to="/Technology" onClick={()=>setcat("Technology")} className={`mr-4 ${cat=="Technology"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Technology</Link>
+        <Link to="/Business" onClick={()=>setcat("Business")} className={`mr-4 ${cat=="Business"? "scale-105 text-white border-b-2 border-white font-bold" : "text-gray-300 hover:scale-105 hover:text-gray-200"}`}>Business</Link>
+        </div>
+        <input type="text" value={searchBar} onClick={handleOnClick} onChange={handleOnChange} className={`text-center ml-auto rounded-md pb-2 pt-2`}/>
+        <button className={`pb-1 pt-1 pr-2 pl-2 hover:scale-105 text-white border-2 ml-2 mr-2 border-white rounded-md`}>Search</button>
+    </div>
     </>
   )
 }
+
