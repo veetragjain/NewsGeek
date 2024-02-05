@@ -6,41 +6,41 @@ import Main_body from './components/Main_body';
 import Footer from './components/footer';
 import { BrowserRouter as Router, Routes, Switch, Link, Route } from "react-router-dom";
 function App() {
-  const [pageNo, setpageNo] = useState(1);
   const [view, setview] = useState("flex-row")
-  const [category, setcategory] = useState("General");
+  const [category, setcategory] = useState("general");
+  console.log("parent");
   return (
     <Router>
-    <Navbarsm cview={setview}/>
-    <Navbar category={category}/>
+    <Navbarsm category={category} ccat = {setcategory} view = {view} cview = {setview}/>
+    <Navbar category={category} ccat = {setcategory}/>
     <Routes>
         <Route 
           path="/"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="General"/>}
+          element={<Main_body view={view}  category = {category}/>}
         />
         <Route 
           path="/Entertainment"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Entertainment"/>}
+          element={<Main_body view={view}  category = {category}/>}
         />
         <Route 
           path="/Health"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Health"/>}
+          element={<Main_body view={view} category = {category}/>}
         />
         <Route 
           path="/Sports"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Sports"/>}
+          element={<Main_body view={view} category = {category}/>}
         />
         <Route 
           path="/Science"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Science"/>}
+          element={<Main_body view={view} category = {category}/>}
         />
         <Route 
           path="/Technology"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Technology"/>}
+          element={<Main_body view={view} category = {category}/>}
         />
         <Route 
           path="/Business"
-          element={<Main_body view={view}  incPage={setpageNo} pageNo={pageNo} category="Business"/>}
+          element={<Main_body view={view} category = {category}/>}
         />
     </Routes>
     </Router>
